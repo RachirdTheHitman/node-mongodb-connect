@@ -1,4 +1,12 @@
-const MongoClient = require('mongodb').MongoClient;
+// const MongoClient = require('mongodb').MongoClient;
+const {MongoClient, ObjectID} = require('mongodb');
+
+// var obj = new ObjectID();
+// console.log(obj);
+
+// var user = {name: 'Richard', age: 28};
+// var {name} = user;
+// console.log(name);
 
 //mongov2 code
 MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {   //dont need to create a database before you wanna connect it
@@ -18,17 +26,18 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {   //dont
   //   console.log(JSON.stringify(result.ops, undefined, 2));
   // });
 
-  db.collection('Users').insertOne({
-    name: 'Richard',
-    age: 28,
-    location: 'Melbourne'
-  }, (err, result) => {
-    if (err) {
-      return console.log('Unable to insert users', err);
-    }
-
-    console.log(JSON.stringify(result.ops, undefined, 2));
-  });
+  // db.collection('Users').insertOne({
+  //   name: 'Richard',
+  //   age: 28,
+  //   location: 'Melbourne'
+  // }, (err, result) => {
+  //   if (err) {
+  //     return console.log('Unable to insert users', err);
+  //   }
+  //
+  //   // console.log(JSON.stringify(result.ops, undefined, 2));
+  //   console.log(result.ops[0]._id.getTimestamp());
+  // });
 
   db.close();
 });
