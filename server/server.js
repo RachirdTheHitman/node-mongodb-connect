@@ -31,6 +31,8 @@ app.listen(3000, () => {
   console.log('Started on port 3000');
 });
 
+module.exports = {app};
+
 // save new something
 // create a model
 // var Todo = mongoose.model('Todo', {
