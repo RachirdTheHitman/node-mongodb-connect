@@ -56,6 +56,28 @@ UserSchema.methods.generateAuthToken = function () {
   });
 };
 
+//method added into statics will be the model methods as opposed to the ones added to methods object, whchi will become the instance methods
+UserSchema.statics.findByToken = function (token) {
+  var User = this;
+  var decoded;
+
+  try {
+    decoded = jwt.verify(token, 'abc123');
+  } catch (e) {
+    // return new Promise((resolve, reject) => {
+    //   reject();
+    // });
+    // same effect like the simlified version code below
+    return Promise.reject();
+  }
+
+  return User.findOne({
+    '_id': decoded._id,
+    'tokens.token': token,
+    'tokens.access': 'auth'
+  });
+};
+
 var User = mongoose.model('User', UserSchema);
 
 module.exports = {User};
