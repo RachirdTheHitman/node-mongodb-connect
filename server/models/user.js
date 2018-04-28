@@ -79,6 +79,7 @@ UserSchema.statics.findByToken = function (token) {
   });
 };
 
+// adding middleware before each 'save' event fired
 UserSchema.pre('save', function (next) {
   var user = this;
 
