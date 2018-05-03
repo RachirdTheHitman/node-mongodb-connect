@@ -60,10 +60,11 @@ UserSchema.methods.generateAuthToken = function () {
 //method added into statics will be the model methods as opposed to the ones added to methods object, whchi will become the instance methods
 UserSchema.statics.findByToken = function (token) {
   var User = this;
-  var decoded;
+  var decoded;         // information after decoding the token( containing token information in the header ) sent by users.
 
   try {
     decoded = jwt.verify(token, 'abc123');
+    // console.log(decoded);
   } catch (e) {
     // return new Promise((resolve, reject) => {
     //   reject();
