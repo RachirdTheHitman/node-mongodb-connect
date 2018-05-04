@@ -57,6 +57,16 @@ UserSchema.methods.generateAuthToken = function () {
   });
 };
 
+UserSchema.methods.removeToken = function (token) {
+  var user = this;
+
+  return user.update({
+    $pull: {                             //$pull operator to remove anything matched in that array
+      tokens: {token} 
+    }
+  });
+};
+
 //method added into statics will be the model methods as opposed to the ones added to methods object, whchi will become the instance methods
 UserSchema.statics.findByToken = function (token) {
   var User = this;
